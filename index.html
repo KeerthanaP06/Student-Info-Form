@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student form</title>
+    <style>
+        body{
+            background-color: rgb(232, 162, 162);
+        }
+        table{
+            padding: 2px;
+        }
+        /* Style for left table */
+        #leftTable {
+            height:100%;
+            float: left;
+            margin-left: 280px;
+            margin-top: 180px;
+           
+        }
+
+        /* Style for right table */
+        #rightTable {
+            height:100%;
+            float: right;
+            margin-right: 280px;
+            margin-top: 180px;
+            padding: 2px;
+        }
+
+      
+    </style>
+</head>
+<body>
+    <!-- Left Table -->
+    <div id="leftTable">
+        <h1>Student Form</h1>
+        <table border="1">
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" id="name"></td>
+            </tr>
+            <tr>
+                <td>Department:</td>
+                <td><input type="text" id="department"></td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td><input type="text" id="gender"></td>
+            </tr>
+            <tr>
+                <td>Mobile:</td>
+                <td><input type="text" id="mobile"></td>
+            </tr>
+        </table>
+        <button onclick="save()">Save</button>
+    </div>
+
+    <!-- Right Table -->
+    <div id="rightTable">
+        <h1>Student Details</h1>
+        <table border="2">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Gender</th>
+                    <th>Mobile</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="dataBody">
+                <!-- Data will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function save() {
+            var name = document.getElementById("name").value;
+            var department = document.getElementById("department").value;
+            var gender = document.getElementById("gender").value;
+            var mobile = document.getElementById("mobile").value;
+
+            var tableBody = document.getElementById("dataBody");
+
+            // Create a new table row
+            var newRow = document.createElement("tr");
+
+            // Create table data cells and append to the row
+            var nameCell = document.createElement("td");
+            nameCell.textContent = name;
+            newRow.appendChild(nameCell);
+
+            var departmentCell = document.createElement("td");
+            departmentCell.textContent = department;
+            newRow.appendChild(departmentCell);
+
+            var genderCell = document.createElement("td");
+            genderCell.textContent = gender;
+            newRow.appendChild(genderCell);
+
+            var mobileCell = document.createElement("td");
+            mobileCell.textContent = mobile;
+            newRow.appendChild(mobileCell);
+
+            // Create a delete button
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = function() {
+                tableBody.removeChild(newRow);
+            };
+
+            // Create a table data cell for the action column and append the delete button
+            var actionCell = document.createElement("td");
+            actionCell.appendChild(deleteButton);
+            newRow.appendChild(actionCell);
+
+            // Append the new row to the table body
+            tableBody.appendChild(newRow);
+
+            // Clear input fields
+            document.getElementById("name").value = "";
+            document.getElementById("department").value = "";
+            document.getElementById("gender").value = "";
+            document.getElementById("mobile").value = "";
+        }
+    </script>
+</body>
+</html>
